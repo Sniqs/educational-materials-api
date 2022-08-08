@@ -1,6 +1,6 @@
 ﻿namespace EducationalMaterials.Data.DAL.Interfaces
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetAllReadOnlyAsync();
         Task<T> GetSingleByConditionAsync(Expression<Func<T, bool>> condition);

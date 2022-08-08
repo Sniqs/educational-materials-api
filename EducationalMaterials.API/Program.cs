@@ -18,6 +18,10 @@ builder.Services.AddScoped<LoggingMiddleware>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -33,6 +37,8 @@ app.UseMiddleware<LoggingMiddleware>();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

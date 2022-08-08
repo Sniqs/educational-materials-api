@@ -4,5 +4,6 @@
     {
         Task<IEnumerable<MaterialTypeDisplayDto>> GetAllAsync();
         Task<MaterialTypeDisplayDto> GetSingleAsync(int id);
+        Task<IEnumerable<MaterialDisplayDto>> GetTypeMaterialsAsync(int id);
     }
 }

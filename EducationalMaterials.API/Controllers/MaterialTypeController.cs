@@ -18,5 +18,9 @@
         [HttpGet("{typeId}")]
         public async Task<IActionResult> GetSingleAsync(int typeId)
             => Ok(await _service.GetSingleAsync(typeId));
+
+        [HttpGet("{typeId}/materials")]
+        public async Task<IActionResult> GetMaterialsOfTypeAsync(int typeId)
+            => Ok(await _service.GetTypeMaterialsAsync(typeId));
     }
 }

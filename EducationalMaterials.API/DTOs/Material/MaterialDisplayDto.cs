@@ -1,14 +1,14 @@
 ﻿namespace EducationalMaterials.API.DTOs.Material
 {
-    public class MaterialDisplayDto
+    public record MaterialDisplayDto
     {
-        public int Id { get; set; }
-        public int AuthorId { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string Location { get; set; } = null!;
-        public int TypeId { get; set; }
-        public double AverageRating { get; set; }
-        public DateTime Published { get; set; }
+        public int Id { get; init; }
+        public int AuthorId { get; init; }
+        public string Title { get; init; } = null!;
+        public string Description { get; init; } = null!;
+        public string Location { get; init; } = null!;
+        public int TypeId { get; init; }
+        public double AverageRating { get; init; }
+        public DateTime Published { get; init; }
     }
 }

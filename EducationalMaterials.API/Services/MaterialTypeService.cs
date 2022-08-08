@@ -15,5 +15,11 @@
             var materialTypes = await _repository.GetAllReadOnlyAsync();
             return _mapper.Map<IEnumerable<MaterialTypeDisplayDto>>(materialTypes);
         }
+
+        public async Task<MaterialTypeDisplayDto> GetSingleAsync(int id)
+        {
+            var materialType = await _repository.GetSingleByConditionAsync(r => r.Id == id);
+            return _mapper.Map<MaterialTypeDisplayDto>(materialType);
+        }
     }
 }

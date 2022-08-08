@@ -33,5 +33,12 @@
             var updatedMaterialDto = await _service.UpdateAsync(inputDto);
             return Ok(updatedMaterialDto);
         }
+
+        [HttpDelete("{materialId}")]
+        public async Task<IActionResult> DeleteAsync(int materialId)
+        {
+            await _service.DeleteAsync(materialId);
+            return NoContent();
+        }
     }
 }

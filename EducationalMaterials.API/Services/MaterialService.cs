@@ -19,6 +19,13 @@
             return _mapper.Map<MaterialDisplayDto>(material);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var review = await _repository.GetSingleByConditionAsync(r => r.Id == id);
+            _repository.Delete(review);
+            await _repository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<MaterialDisplayDto>> GetAllAsync()
         {
             var materials = await _repository.GetAllReadOnlyWithRelatedEntityAsync("Reviews");

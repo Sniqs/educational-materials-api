@@ -37,7 +37,7 @@
             return entity;
         }
 
-        public async Task<T> GetSingleByConditionWithIncludeAsync(Expression<Func<T, bool>> condition, string include)
+        public async Task<T> GetSingleByConditionWithRelatedEntityAsync(Expression<Func<T, bool>> condition, string include)
         {
             var entity = await MaterialsContext.Set<T>()
                 .Where(condition)

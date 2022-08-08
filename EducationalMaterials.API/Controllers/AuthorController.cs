@@ -13,6 +13,9 @@
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
             => Ok(await _service.GetAllAsync());
-        
+
+        [HttpGet("{authorId}")]
+        public async Task<IActionResult> GetSingleAsync(int authorId)
+            => Ok(await _service.GetSingleAsync(authorId));
     }
 }

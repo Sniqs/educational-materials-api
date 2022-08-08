@@ -12,7 +12,7 @@
         }
         public async Task<IEnumerable<AuthorDisplayDto>> GetAllAsync()
         {
-            var authors = await _repository.GetAllReadOnlyAsync();
+            var authors = await _repository.GetAllReadOnlyWithRelatedEntityAsync("Materials");
             return _mapper.Map<IEnumerable<AuthorDisplayDto>>(authors);
         }
     }

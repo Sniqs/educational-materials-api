@@ -28,8 +28,8 @@
         public async Task<T> GetSingleByConditionAsync(Expression<Func<T, bool>> condition)
         {
             var entity = await MaterialsContext.Set<T>()
-            .Where(condition)
-            .SingleOrDefaultAsync();
+                .Where(condition)
+                .SingleOrDefaultAsync();
 
             if (entity is null)
                 throw new ResourceNotFoundException($"Requested resource: {typeof(T)} doesn't exist");
@@ -40,14 +40,20 @@
         public async Task<T> GetSingleByConditionWithIncludeAsync(Expression<Func<T, bool>> condition, string include)
         {
             var entity = await MaterialsContext.Set<T>()
-            .Where(condition)
-               .Include(include)
-            .SingleOrDefaultAsync();
+                .Where(condition)
+                .Include(include)
+                .SingleOrDefaultAsync();
 
             if (entity is null)
                 throw new ResourceNotFoundException($"Requested resource: {typeof(T)} doesn't exist");
 
             return entity;
         }
+
+        public async Task<IEnumerable<T>> GetAllReadOnlyWithRelatedEntityAsync(string include)
+            => await MaterialsContext.Set<T>()
+                .Include(include)
+                .AsNoTracking()
+                .ToListAsync();
     }
 }

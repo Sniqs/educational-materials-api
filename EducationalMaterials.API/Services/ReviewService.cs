@@ -30,5 +30,14 @@
             var review = await _repository.GetSingleByConditionAsync(r => r.Id == id);
             return _mapper.Map<ReviewDisplayDto>(review);
         }
+
+        public async Task<ReviewDisplayDto> UpdateAsync(ReviewUpdateDto dto)
+        {
+            var review = await _repository.GetSingleByConditionAsync(r => r.Id == dto.Id);
+            _mapper.Map(dto, review);
+            _repository.Update(review);
+            await _repository.SaveChangesAsync();
+            return _mapper.Map<ReviewDisplayDto>(review);
+        }
     }
 }

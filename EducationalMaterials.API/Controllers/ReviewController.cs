@@ -20,10 +20,18 @@
             => Ok(await _service.GetSingleAsync(reviewId));
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewCreateDto inputDto)
+        public async Task<IActionResult> CreateAsync(ReviewCreateDto inputDto)
         {
             var addedReviewDto = await _service.CreateAsync(inputDto);
             return Created($"{Request.Scheme}://{Request.Host}{Request.Path}/{addedReviewDto.Id}", addedReviewDto);
+        }
+
+        [HttpPut("{reviewId}")]
+        public async Task<IActionResult> UpdateAsync(ReviewUpdateDto inputDto, int reviewId)
+        {
+            if (inputDto.Id != reviewId) return BadRequest("Different resource id in URL and request body");
+            var updatedReviewDto = await _service.UpdateAsync(inputDto);
+            return Ok(updatedReviewDto);
         }
     }
 }

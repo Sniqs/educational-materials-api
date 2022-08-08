@@ -6,6 +6,7 @@
         {
             CreateMap<Review, ReviewDisplayDto>();
             CreateMap<ReviewCreateDto, Review>();
+            CreateMap<ReviewUpdateDto, Review>();
         }
     }
 }

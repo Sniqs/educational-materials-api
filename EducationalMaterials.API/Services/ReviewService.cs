@@ -11,6 +11,14 @@
             _mapper = mapper;
         }
 
+        public async Task<ReviewDisplayDto> CreateAsync(ReviewCreateDto dto)
+        {
+            var review = _mapper.Map<Review>(dto);
+            _repository.Create(review);
+            await _repository.SaveChangesAsync();
+            return _mapper.Map<ReviewDisplayDto>(review);
+        }
+
         public async Task<IEnumerable<ReviewDisplayDto>> GetAllAsync()
         {
             var reviews = await _repository.GetAllReadOnlyAsync();

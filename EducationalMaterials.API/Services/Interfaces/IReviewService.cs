@@ -4,5 +4,6 @@
     {
         Task<IEnumerable<ReviewDisplayDto>> GetAllAsync();
         Task<ReviewDisplayDto> GetSingleAsync(int id);
+        Task<ReviewDisplayDto> CreateAsync(ReviewCreateDto dto);
     }
 }

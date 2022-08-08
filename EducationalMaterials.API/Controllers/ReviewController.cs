@@ -19,5 +19,11 @@
         public async Task<IActionResult> GetSingleAsync(int reviewId)
             => Ok(await _service.GetSingleAsync(reviewId));
 
+        [HttpPost]
+        public async Task<IActionResult> Create(ReviewCreateDto inputDto)
+        {
+            var addedReviewDto = await _service.CreateAsync(inputDto);
+            return Created($"{Request.Scheme}://{Request.Host}{Request.Path}/{addedReviewDto.Id}", addedReviewDto);
+        }
     }
 }

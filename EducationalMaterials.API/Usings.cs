@@ -12,3 +12,4 @@ global using EducationalMaterials.Data.Entities;
 global using EducationalMaterials.Data.Exceptions;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using System.ComponentModel.DataAnnotations;

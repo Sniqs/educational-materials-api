@@ -5,6 +5,7 @@
         public ReviewProfile()
         {
             CreateMap<Review, ReviewDisplayDto>();
+            CreateMap<ReviewCreateDto, Review>();
         }
     }
 }

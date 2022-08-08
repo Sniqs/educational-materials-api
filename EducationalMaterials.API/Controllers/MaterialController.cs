@@ -15,5 +15,9 @@
         public async Task<IActionResult> GetAllAsync()
             => Ok(await _service.GetAllAsync());
 
+        [HttpGet("{materialId}")]
+        public async Task<IActionResult> GetSingleAsync(int materialId)
+            => Ok(await _service.GetSingleAsync(materialId));
+
     }
 }

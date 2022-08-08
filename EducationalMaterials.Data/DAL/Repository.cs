@@ -32,7 +32,7 @@
                 .SingleOrDefaultAsync();
 
             if (entity is null)
-                throw new ResourceNotFoundException($"Requested resource: {typeof(T).Name} doesn't exist.");
+                throw new ResourceNotFoundException($"Requested resource of type {typeof(T).Name} doesn't exist.");
 
             return entity;
         }
@@ -45,7 +45,7 @@
                 .SingleOrDefaultAsync();
 
             if (entity is null)
-                throw new ResourceNotFoundException($"Requested resource: {typeof(T).Name} doesn't exist.");
+                throw new ResourceNotFoundException($"Requested resource of type {typeof(T).Name} doesn't exist.");
 
             return entity;
         }

@@ -4,5 +4,6 @@
     {
         Task<IEnumerable<AuthorDisplayDto>> GetAllAsync();
         Task<AuthorDisplayDto> GetSingleAsync(int id);
+        Task<IEnumerable<MaterialDisplayDto>> GetBestMaterialsAsync(int authorId);
     }
 }

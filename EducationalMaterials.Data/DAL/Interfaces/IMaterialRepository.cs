@@ -2,6 +2,5 @@
 {
     public interface IMaterialRepository : IRepository<Material>
     {
-        Task LoadReviewsAsync(Material material);
     }
 }

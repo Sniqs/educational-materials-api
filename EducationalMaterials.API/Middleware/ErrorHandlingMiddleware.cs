@@ -19,7 +19,7 @@
             {
                 _logger.LogError(e, e.Message);
                 context.Response.StatusCode = 404;
-                await context.Response.WriteAsJsonAsync("Something went wrong.");
+                await context.Response.WriteAsJsonAsync(e.Message);
             }
             catch (Exception e)
             {

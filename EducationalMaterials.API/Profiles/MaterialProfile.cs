@@ -6,6 +6,7 @@
         {
             CreateMap<Material, MaterialDisplayDto>();
             CreateMap<MaterialCreateDto, Material>();
+            CreateMap<MaterialUpdateDto, Material>();
         }
     }
 }

@@ -31,6 +31,13 @@
             return _mapper.Map<MaterialDisplayDto>(material);
         }
 
-        
+        public async Task<MaterialDisplayDto> UpdateAsync(MaterialUpdateDto dto)
+        {
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, "Reviews");
+            _mapper.Map(dto, material);
+            _repository.Update(material);
+            await _repository.SaveChangesAsync();
+            return _mapper.Map<MaterialDisplayDto>(material);
+        }
     }
 }

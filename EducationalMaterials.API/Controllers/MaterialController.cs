@@ -25,5 +25,13 @@
             var addedMaterialDto = await _service.CreateAsync(inputDto);
             return Created($"{Request.Scheme}://{Request.Host}{Request.Path}/{addedMaterialDto.Id}", addedMaterialDto);
         }
+
+        [HttpPut("{materialId}")]
+        public async Task<IActionResult> UpdateAsync(MaterialUpdateDto inputDto, int materialId)
+        {
+            if (inputDto.Id != materialId) return BadRequest("Different resource id in URL and request body");
+            var updatedMaterialDto = await _service.UpdateAsync(inputDto);
+            return Ok(updatedMaterialDto);
+        }
     }
 }

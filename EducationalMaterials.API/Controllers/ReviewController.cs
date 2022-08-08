@@ -33,5 +33,12 @@
             var updatedReviewDto = await _service.UpdateAsync(inputDto);
             return Ok(updatedReviewDto);
         }
+
+        [HttpDelete("{reviewId}")]
+        public async Task<IActionResult> DeleteAsync(int reviewId)
+        {
+            await _service.DeleteAsync(reviewId);
+            return NoContent();
+        }
     }
 }

@@ -19,6 +19,13 @@
             return _mapper.Map<ReviewDisplayDto>(review);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var review = await _repository.GetSingleByConditionAsync(r => r.Id == id);
+            _repository.Delete(review);
+            await _repository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<ReviewDisplayDto>> GetAllAsync()
         {
             var reviews = await _repository.GetAllReadOnlyAsync();

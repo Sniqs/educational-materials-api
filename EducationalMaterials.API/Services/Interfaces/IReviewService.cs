@@ -6,5 +6,6 @@
         Task<ReviewDisplayDto> GetSingleAsync(int id);
         Task<ReviewDisplayDto> CreateAsync(ReviewCreateDto dto);
         Task<ReviewDisplayDto> UpdateAsync(ReviewUpdateDto dto);
+        Task DeleteAsync(int id);
     }
 }

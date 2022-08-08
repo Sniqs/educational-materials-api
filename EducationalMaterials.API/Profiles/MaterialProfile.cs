@@ -5,6 +5,7 @@
         public MaterialProfile()
         {
             CreateMap<Material, MaterialDisplayDto>();
+            CreateMap<MaterialCreateDto, Material>();
         }
     }
 }

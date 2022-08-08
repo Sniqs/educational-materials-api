@@ -11,7 +11,7 @@
         public MaterialType Type { get; set; } = null!;
         public int TypeId { get; set; }
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
-        public double AverageRating { get { return Reviews.Average(x => x.Rating); } }
+        public double AverageRating { get { return Reviews.Any() ? Reviews.Average(x => x.Rating) : 0; } }
         public DateTime Published { get; set; }
 
     }

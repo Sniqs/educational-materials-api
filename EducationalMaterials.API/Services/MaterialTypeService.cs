@@ -24,7 +24,7 @@
 
         public async Task<IEnumerable<MaterialDisplayDto>> GetTypeMaterialsAsync(int id)
         {
-            if (!await _repository.CheckIfExistsAsync<MaterialType>(m => m.Id == id))
+            if (!await _repository.CheckIfExistsAsync<MaterialType>(t => t.Id == id))
                 throw new BadHttpRequestException($"Material type with id {id} doesn't exist.");
 
             var materials = await _repository.GetTypeMaterialsAsync(id);

@@ -16,6 +16,9 @@
         }
         public async Task<UserDisplayDto> CreateAsync(UserCreateDto dto)
         {
+            if (!await _repository.CheckIfExistsAsync<Role>(r => r.Id == dto.RoleId))
+                throw new BadHttpRequestException($"Role with id {dto.RoleId} doesn't exist.");
+
             var user = _mapper.Map<User>(dto);
             user.PasswordHash = _hasher.HashPassword(user, dto.Password);
 

@@ -56,7 +56,7 @@
             if (!await _repository.CheckIfExistsAsync<Author>(m => m.Id == authorId))
                 throw new BadHttpRequestException($"Author with id {authorId} doesn't exist.");
 
-            if (!await _repository.CheckIfExistsAsync<MaterialType>(m => m.Id == typeId))
+            if (!await _repository.CheckIfExistsAsync<MaterialType>(t => t.Id == typeId))
                 throw new BadHttpRequestException($"Material type with id {typeId} doesn't exist.");
         }
     }

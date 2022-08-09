@@ -12,7 +12,7 @@
         }
         public async Task<IEnumerable<AuthorDisplayDto>> GetAllAsync()
         {
-            var authors = await _repository.GetAllReadOnlyWithRelatedEntityAsync("Materials");
+            var authors = await _repository.GetAllReadOnlyWithRelatedEntityAsync(Includes.Materials.ToString());
             return _mapper.Map<IEnumerable<AuthorDisplayDto>>(authors);
         }
 
@@ -34,7 +34,7 @@
 
         public async Task<AuthorDisplayDto> GetSingleAsync(int id)
         {
-            var author = await _repository.GetSingleByConditionWithRelatedEntityAsync(c => c.Id == id, "Materials");
+            var author = await _repository.GetSingleByConditionWithRelatedEntityAsync(c => c.Id == id, Includes.Materials.ToString());
             return _mapper.Map<AuthorDisplayDto>(author);
         }
     }

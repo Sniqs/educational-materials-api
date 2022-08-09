@@ -33,7 +33,7 @@
 
         public async Task<string> LoginUserAsync(UserLoginDto inputDto)
         {
-            var user = await _repository.GetSingleByConditionWithRelatedEntityAsync(u => u.Login == inputDto.Login, "Role");
+            var user = await _repository.GetSingleByConditionWithRelatedEntityAsync(u => u.Login == inputDto.Login, Includes.Role.ToString());
             var passwordMatches = _hasher.VerifyHashedPassword(user, user.PasswordHash, inputDto.Password);
 
             if (passwordMatches == PasswordVerificationResult.Failed)

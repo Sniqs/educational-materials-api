@@ -30,13 +30,13 @@
 
         public async Task<IEnumerable<MaterialDisplayDto>> GetAllAsync()
         {
-            var materials = await _repository.GetAllReadOnlyWithRelatedEntityAsync("Reviews");
+            var materials = await _repository.GetAllReadOnlyWithRelatedEntityAsync(Includes.Reviews.ToString());
             return _mapper.Map<IEnumerable<MaterialDisplayDto>>(materials);
         }
 
         public async Task<MaterialDisplayDto> GetSingleAsync(int id)
         {
-            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(m => m.Id == id, "Reviews");
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(m => m.Id == id, Includes.Reviews.ToString());
             return _mapper.Map<MaterialDisplayDto>(material);
         }
 
@@ -44,7 +44,7 @@
         {
             await CheckIfAuthorAndTypeExistAsync(dto.AuthorId, dto.TypeId);
 
-            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, "Reviews");
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, Includes.Reviews.ToString());
             _mapper.Map(dto, material);
             _repository.Update(material);
             await _repository.SaveChangesAsync();

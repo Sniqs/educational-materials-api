@@ -1,5 +1,6 @@
 ﻿namespace EducationalMaterials.API.Controllers
 {
+    [ApiController]
     [Route("api/authors")]
     public class AuthorController : ControllerBase
     {

@@ -27,7 +27,16 @@
             return Created($"{Request.Scheme}://{Request.Host}{Request.Path}/{addedUserDto.Id}", addedUserDto);
         }
 
+        /// <summary>
+        /// Logs a user in based on the provided data.
+        /// </summary>
+        /// <param name="inputDto">User login data.</param>
+        /// <returns>JWT for the given user.</returns>
         [HttpPost("login")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [Produces(MediaTypeNames.Text.Plain)]
+        [SwaggerResponse(StatusCodes.Status200OK)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> LoginUserAsync(UserLoginDto inputDto)
             => Ok(await _service.LoginUserAsync(inputDto));
     }

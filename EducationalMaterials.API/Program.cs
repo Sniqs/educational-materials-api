@@ -7,7 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<MaterialsContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString(name: "MaterialsDb")));
+    options => options.UseSqlServer(builder.Configuration["ConnectionStrings:MaterialsDb"]));
 
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
@@ -28,7 +28,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
 
-builder.Services.AddSwaggerGen(c => c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml")));
+builder.Services.AddSwaggerGen(c => 
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml")));
 
 var app = builder.Build();
 

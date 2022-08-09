@@ -15,6 +15,12 @@
             {
                 await next.Invoke(context);
             }
+            catch (InvalidEmailOrPasswordException e)
+            {
+                _logger.LogError(e, e.Message);
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsJsonAsync(e.Message);
+            }
             catch (ResourceNotFoundException e)
             {
                 _logger.LogError(e, e.Message);

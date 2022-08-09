@@ -26,5 +26,9 @@
             var addedUserDto = await _service.CreateAsync(inputDto);
             return Created($"{Request.Scheme}://{Request.Host}{Request.Path}/{addedUserDto.Id}", addedUserDto);
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginUserAsync(UserLoginDto inputDto)
+            => Ok(await _service.LoginUserAsync(inputDto));
     }
 }

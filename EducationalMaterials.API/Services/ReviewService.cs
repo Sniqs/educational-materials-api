@@ -13,7 +13,7 @@
 
         public async Task<ReviewDisplayDto> CreateAsync(ReviewCreateDto dto)
         {
-            if (!await _repository.CheckIfExists<Material>(m => m.Id == dto.MaterialId))
+            if (!await _repository.CheckIfExistsAsync<Material>(m => m.Id == dto.MaterialId))
                 throw new BadHttpRequestException($"Material with id {dto.MaterialId} doesn't exist.");
 
             var review = _mapper.Map<Review>(dto);
@@ -43,6 +43,9 @@
 
         public async Task<ReviewDisplayDto> UpdateAsync(ReviewUpdateDto dto)
         {
+            if (!await _repository.CheckIfExistsAsync<Material>(m => m.Id == dto.MaterialId))
+                throw new BadHttpRequestException($"Material with id {dto.MaterialId} doesn't exist.");
+
             var review = await _repository.GetSingleByConditionAsync(r => r.Id == dto.Id);
             _mapper.Map(dto, review);
             _repository.Update(review);

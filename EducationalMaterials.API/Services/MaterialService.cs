@@ -13,11 +13,7 @@
 
         public async Task<MaterialDisplayDto> CreateAsync(MaterialCreateDto dto)
         {
-            if (!await _repository.CheckIfExists<Author>(m => m.Id == dto.AuthorId))
-                throw new BadHttpRequestException($"Author with id {dto.AuthorId} doesn't exist.");
-
-            if (!await _repository.CheckIfExists<MaterialType>(m => m.Id == dto.TypeId))
-                throw new BadHttpRequestException($"Material type with id {dto.TypeId} doesn't exist.");
+            await CheckIfAuthorAndTypeExistAsync(dto.AuthorId, dto.TypeId);
 
             var material = _mapper.Map<Material>(dto);
             _repository.Create(material);
@@ -46,17 +42,22 @@
 
         public async Task<MaterialDisplayDto> UpdateAsync(MaterialUpdateDto dto)
         {
-            if (!await _repository.CheckIfExists<Author>(m => m.Id == dto.AuthorId))
-                throw new BadHttpRequestException($"Author with id {dto.AuthorId} doesn't exist.");
-
-            if (!await _repository.CheckIfExists<MaterialType>(m => m.Id == dto.TypeId))
-                throw new BadHttpRequestException($"Material type with id {dto.TypeId} doesn't exist.");
+            await CheckIfAuthorAndTypeExistAsync(dto.AuthorId, dto.TypeId);
 
             var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, "Reviews");
             _mapper.Map(dto, material);
             _repository.Update(material);
             await _repository.SaveChangesAsync();
             return _mapper.Map<MaterialDisplayDto>(material);
+        }
+
+        private async Task CheckIfAuthorAndTypeExistAsync(int authorId, int typeId)
+        {
+            if (!await _repository.CheckIfExistsAsync<Author>(m => m.Id == authorId))
+                throw new BadHttpRequestException($"Author with id {authorId} doesn't exist.");
+
+            if (!await _repository.CheckIfExistsAsync<MaterialType>(m => m.Id == typeId))
+                throw new BadHttpRequestException($"Material type with id {typeId} doesn't exist.");
         }
     }
 }

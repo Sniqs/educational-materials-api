@@ -28,7 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml")));
 
 var app = builder.Build();
 

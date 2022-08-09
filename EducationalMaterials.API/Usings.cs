@@ -13,4 +13,6 @@ global using EducationalMaterials.Data.Entities;
 global using EducationalMaterials.Data.Exceptions;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using Swashbuckle.AspNetCore.Annotations;
 global using System.ComponentModel.DataAnnotations;
+global using System.Net.Mime;

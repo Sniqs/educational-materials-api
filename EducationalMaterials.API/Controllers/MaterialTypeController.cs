@@ -12,14 +12,22 @@
         }
 
         [HttpGet]
+        [Produces(MediaTypeNames.Application.Json)]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<MaterialTypeDisplayDto>))]
         public async Task<IActionResult> GetAllAsync()
             => Ok(await _service.GetAllAsync());
 
         [HttpGet("{typeId}")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialTypeDisplayDto))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetSingleAsync(int typeId)
             => Ok(await _service.GetSingleAsync(typeId));
 
         [HttpGet("{typeId}/materials")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<MaterialDisplayDto>))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetMaterialsOfTypeAsync(int typeId)
             => Ok(await _service.GetTypeMaterialsAsync(typeId));
     }

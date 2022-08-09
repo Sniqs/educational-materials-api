@@ -19,6 +19,9 @@
             if (!await _repository.CheckIfExistsAsync<Role>(r => r.Id == dto.RoleId))
                 throw new BadHttpRequestException($"Role with id {dto.RoleId} doesn't exist.");
 
+            if (await _repository.CheckIfExistsAsync<User>(u => u.Login == dto.Login))
+                throw new BadHttpRequestException($"Incorrect login or password.");
+
             var user = _mapper.Map<User>(dto);
             user.PasswordHash = _hasher.HashPassword(user, dto.Password);
 
@@ -33,7 +36,7 @@
             var passwordMatches = _hasher.VerifyHashedPassword(user, user.PasswordHash, inputDto.Password);
 
             if (passwordMatches == PasswordVerificationResult.Failed)
-                throw new BadHttpRequestException("Incorrect user email or password.");
+                throw new BadHttpRequestException("Incorrect login or password.");
 
             return GenerateJwt(user);
         }

@@ -15,7 +15,7 @@
             {
                 await next.Invoke(context);
             }
-            catch (InvalidEmailOrPasswordException e)
+            catch (BadHttpRequestException e)
             {
                 _logger.LogError(e, e.Message);
                 context.Response.StatusCode = 400;

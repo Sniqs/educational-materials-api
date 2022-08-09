@@ -55,5 +55,13 @@
                 .Include(include)
                 .AsNoTracking()
                 .ToListAsync();
+
+        public async Task<bool> CheckIfExists<TEntity>(Expression<Func<TEntity, bool>> condition) where TEntity : class
+            => await MaterialsContext
+                .Set<TEntity>()
+                .Where(condition)
+                .AnyAsync();
+
+
     }
 }

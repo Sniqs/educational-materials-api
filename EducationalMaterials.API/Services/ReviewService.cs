@@ -13,6 +13,9 @@
 
         public async Task<ReviewDisplayDto> CreateAsync(ReviewCreateDto dto)
         {
+            if (!await _repository.CheckIfExists<Material>(m => m.Id == dto.MaterialId))
+                throw new BadHttpRequestException($"Material with id {dto.MaterialId} doesn't exist.");
+
             var review = _mapper.Map<Review>(dto);
             _repository.Create(review);
             await _repository.SaveChangesAsync();

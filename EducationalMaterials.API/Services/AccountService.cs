@@ -30,7 +30,7 @@
             var passwordMatches = _hasher.VerifyHashedPassword(user, user.PasswordHash, inputDto.Password);
 
             if (passwordMatches == PasswordVerificationResult.Failed)
-                throw new InvalidEmailOrPasswordException("Incorrect user email or password.");
+                throw new BadHttpRequestException("Incorrect user email or password.");
 
             return GenerateJwt(user);
         }

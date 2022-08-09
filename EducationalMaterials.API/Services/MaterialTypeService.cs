@@ -27,7 +27,7 @@
             if (!await _repository.CheckIfExistsAsync<MaterialType>(t => t.Id == id))
                 throw new BadHttpRequestException($"Material type with id {id} doesn't exist.");
 
-            var materials = await _repository.GetTypeMaterialsAsync(id);
+            var materials = await _repository.GetMaterialsOfTypeAsync(id);
             return _mapper.Map<IEnumerable<MaterialDisplayDto>>(materials);
         }
     }

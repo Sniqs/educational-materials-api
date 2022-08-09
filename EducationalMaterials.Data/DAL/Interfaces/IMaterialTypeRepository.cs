@@ -2,6 +2,6 @@
 {
     public interface IMaterialTypeRepository : IRepository<MaterialType>
     {
-        Task<IEnumerable<Material>> GetTypeMaterialsAsync(int id);
+        Task<IEnumerable<Material>> GetMaterialsOfTypeAsync(int id);
     }
 }

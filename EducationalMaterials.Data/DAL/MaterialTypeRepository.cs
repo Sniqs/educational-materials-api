@@ -4,7 +4,7 @@
     {
         public MaterialTypeRepository(MaterialsContext context) : base(context) { }
 
-        public async Task<IEnumerable<Material>> GetTypeMaterialsAsync(int id)
+        public async Task<IEnumerable<Material>> GetMaterialsOfTypeAsync(int id)
         { 
             var materials = await MaterialsContext.Materials
                 .Where(m => m.TypeId == id)

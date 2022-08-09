@@ -6,7 +6,8 @@
         {
             CreateMap<UserCreateDto, User>()
                 .ForMember(m => m.PasswordHash, o => o.MapFrom(u => u.Password));
-            CreateMap<User, UserDisplayDto>();
+            CreateMap<User, UserDisplayDto>()
+                .ForMember(u => u.Role, o => o.MapFrom(u => u.Role.Name)); ;
         }
     }
 }

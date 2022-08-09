@@ -27,6 +27,7 @@
 
             _repository.Create(user);
             await _repository.SaveChangesAsync();
+            await _repository.LoadRoleAsync(user);
             return _mapper.Map<UserDisplayDto>(user);
         }
 

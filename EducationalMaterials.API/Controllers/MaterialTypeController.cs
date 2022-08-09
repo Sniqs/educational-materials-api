@@ -18,6 +18,7 @@
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<MaterialTypeDisplayDto>))]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> GetAllAsync()
             => Ok(await _service.GetAllAsync());
 
@@ -30,6 +31,7 @@
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialTypeDisplayDto))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> GetSingleAsync(int typeId)
             => Ok(await _service.GetSingleAsync(typeId));
 
@@ -42,6 +44,7 @@
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<MaterialDisplayDto>))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetMaterialsOfTypeAsync(int typeId)
             => Ok(await _service.GetTypeMaterialsAsync(typeId));
     }

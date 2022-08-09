@@ -18,6 +18,7 @@
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<ReviewDisplayDto>))]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> GetAllAsync()
             => Ok(await _service.GetAllAsync());
 
@@ -30,6 +31,7 @@
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ReviewDisplayDto))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> GetSingleAsync(int reviewId)
             => Ok(await _service.GetSingleAsync(reviewId));
 
@@ -43,6 +45,7 @@
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(ReviewDisplayDto))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> CreateAsync(ReviewCreateDto inputDto)
         {
             var addedReviewDto = await _service.CreateAsync(inputDto);
@@ -61,6 +64,7 @@
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ReviewDisplayDto))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> UpdateAsync(ReviewUpdateDto inputDto, int reviewId)
         {
             if (inputDto.Id != reviewId) return BadRequest("Different resource id in URL and request body");
@@ -75,6 +79,7 @@
         [HttpDelete("{reviewId}")]
         [SwaggerResponse(StatusCodes.Status204NoContent)]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(int reviewId)
         {
             await _service.DeleteAsync(reviewId);

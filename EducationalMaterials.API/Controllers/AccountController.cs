@@ -21,6 +21,7 @@
         [Produces(MediaTypeNames.Application.Json)]
         [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(UserDisplayDto))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterUserAsync(UserCreateDto inputDto)
         {
             var addedUserDto = await _service.CreateAsync(inputDto);

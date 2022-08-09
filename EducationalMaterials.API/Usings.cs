@@ -12,6 +12,7 @@ global using EducationalMaterials.Data.DAL;
 global using EducationalMaterials.Data.DAL.Interfaces;
 global using EducationalMaterials.Data.Entities;
 global using EducationalMaterials.Data.Exceptions;
+global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Swashbuckle.AspNetCore.Annotations;

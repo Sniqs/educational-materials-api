@@ -38,6 +38,7 @@
         [Produces(MediaTypeNames.Text.Plain)]
         [SwaggerResponse(StatusCodes.Status200OK)]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginUserAsync(UserLoginDto inputDto)
             => Ok(await _service.LoginUserAsync(inputDto));
     }

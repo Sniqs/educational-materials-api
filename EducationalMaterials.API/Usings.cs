@@ -3,6 +3,7 @@ global using EducationalMaterials.API.DTOs.Author;
 global using EducationalMaterials.API.DTOs.Material;
 global using EducationalMaterials.API.DTOs.MaterialType;
 global using EducationalMaterials.API.DTOs.Review;
+global using EducationalMaterials.API.DTOs.User;
 global using EducationalMaterials.API.Middleware;
 global using EducationalMaterials.API.Services;
 global using EducationalMaterials.API.Services.Interfaces;

@@ -13,11 +13,13 @@ builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IMaterialTypeRepository, MaterialTypeRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<IMaterialTypeService, MaterialTypeService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<LoggingMiddleware>();

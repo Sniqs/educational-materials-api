@@ -1,6 +1,14 @@
+using NLog;
+using NLog.Web;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+
 // Add services to the container.
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

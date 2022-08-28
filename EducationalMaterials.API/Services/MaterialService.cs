@@ -40,6 +40,12 @@
             return _mapper.Map<MaterialDisplayDto>(material);
         }
 
+        public async Task<MaterialUpdateDto> GetUpdateDtoForPatch(int id)
+        {
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(m => m.Id == id, Includes.Reviews);
+            return _mapper.Map<MaterialUpdateDto>(material);
+        }
+
         public async Task<MaterialDisplayDto> UpdateAsync(MaterialUpdateDto dto)
         {
             await CheckIfAuthorAndTypeExistAsync(dto.AuthorId, dto.TypeId);

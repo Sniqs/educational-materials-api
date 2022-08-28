@@ -6,7 +6,8 @@
         {
             CreateMap<Material, MaterialDisplayDto>();
             CreateMap<MaterialCreateDto, Material>();
-            CreateMap<MaterialUpdateDto, Material>();
+            CreateMap<MaterialUpdateDto, Material>()
+                .ReverseMap();
         }
     }
 }

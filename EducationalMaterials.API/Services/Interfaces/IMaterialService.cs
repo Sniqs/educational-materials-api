@@ -7,5 +7,6 @@
         Task<MaterialDisplayDto> CreateAsync(MaterialCreateDto dto);
         Task<MaterialDisplayDto> UpdateAsync(MaterialUpdateDto dto);
         Task DeleteAsync(int id);
+        Task<MaterialUpdateDto> GetUpdateDtoForPatch(int id);
     }
 }

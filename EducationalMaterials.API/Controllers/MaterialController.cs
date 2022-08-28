@@ -1,4 +1,6 @@
-﻿namespace EducationalMaterials.API.Controllers
+﻿using Microsoft.AspNetCore.Components.Forms;
+
+namespace EducationalMaterials.API.Controllers
 {
     [ApiController]
     [Route("api/materials")]
@@ -70,6 +72,29 @@
             if (inputDto.Id != materialId) return BadRequest("Different resource id in URL and request body");
             var updatedMaterialDto = await _service.UpdateAsync(inputDto);
             return Ok(updatedMaterialDto);
+        }
+
+        /// <summary>
+        /// Partially updates a material based on provided data.
+        /// </summary>
+        /// <param name="patchDoc">JSON patch document with material data to change.</param>
+        /// <param name="materialId">Identifier of the material to partially update.</param>
+        /// <returns>Updated material data.</returns>
+        [HttpPatch("{materialId}")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [Produces(MediaTypeNames.Application.Json)]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialDisplayDto))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PartiallyUpdateAsync(JsonPatchDocument<MaterialUpdateDto> patchDoc, int materialId)
+        {
+            var materialUpdateDto = await _service.GetUpdateDtoForPatch(materialId);
+
+            patchDoc.ApplyTo(materialUpdateDto, ModelState);
+            if (!TryValidateModel(materialUpdateDto)) return ValidationProblem(ModelState);
+
+            return Ok(await _service.UpdateAsync(materialUpdateDto));
         }
 
         /// <summary>

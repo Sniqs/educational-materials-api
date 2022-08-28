@@ -36,7 +36,7 @@
 
         public async Task<MaterialDisplayDto> GetSingleAsync(int id)
         {
-            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(m => m.Id == id, Includes.Reviews.ToString());
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(m => m.Id == id, Includes.Reviews);
             return _mapper.Map<MaterialDisplayDto>(material);
         }
 
@@ -44,7 +44,7 @@
         {
             await CheckIfAuthorAndTypeExistAsync(dto.AuthorId, dto.TypeId);
 
-            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, Includes.Reviews.ToString());
+            var material = await _repository.GetSingleByConditionWithRelatedEntityAsync(r => r.Id == dto.Id, Includes.Reviews);
             _mapper.Map(dto, material);
             _repository.Update(material);
             await _repository.SaveChangesAsync();

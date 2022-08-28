@@ -34,7 +34,7 @@
 
         public async Task<AuthorDisplayDto> GetSingleAsync(int id)
         {
-            var author = await _repository.GetSingleByConditionWithRelatedEntityAsync(c => c.Id == id, Includes.Materials.ToString());
+            var author = await _repository.GetSingleByConditionWithRelatedEntityAsync(c => c.Id == id, Includes.Materials);
             return _mapper.Map<AuthorDisplayDto>(author);
         }
     }
